@@ -64,3 +64,70 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+  # My First Blog
+
+Git Repository URL: https://github.com/kachary3/blog
+
+## Description
+
+This project is a simple blog application built with Laravel. It allows users to create, read, update, and delete (CRUD) blog posts.
+
+## Approach
+
+### Step 1: Setting Up Laravel
+
+- Installed Laravel using Composer.
+- Set up the environment configuration in the `.env` file.
+
+### Step 2: Creating the Blog Post Model and Migration
+
+- Generated the `Post` model and migration using artisan commands.
+- Defined the schema for the `posts` table in the migration file.
+- Ran migrations to create the `posts` table.
+
+### Step 3: Creating the Controller and Routes
+
+- Generated the `PostController` using artisan.
+- Defined resource routes for the `Post` resource in `routes/web.php`.
+
+### Step 4: Building the Views
+
+- Created Blade templates for listing, creating, editing, and showing posts.
+- Used Bootstrap for basic styling.
+
+### Step 5: Implementing CRUD Functionality
+
+- Implemented the necessary methods in `PostController` for CRUD operations.
+- Added form validation in the controller methods.
+
+### Step 6: Pagination
+
+- Added pagination to the blog post listing using Laravel's built-in pagination.
+
+### Step 7: Styling and Debugging
+
+- Customized the styling of pagination controls.
+- Debugged issues with large pagination arrows by overriding CSS styles.
+
+### Step 8: Committing Changes
+
+- Regularly committed changes to the repository with descriptive commit messages.
+
+### Step 9: Final Steps
+
+- Completed the project by finalizing views and testing all functionalities.
+- Documented the project in this README.md file.
+
+## Challenges Faced
+
+### Challenge 1: Large Pagination Arrows
+
+- **Issue**: When implementing pagination for the blog posts, the arrows used in the pagination controls appeared significantly larger than intended. This affected the user interface, making the pagination controls look disproportionate and disrupting the overall aesthetics of the application.
+
+- **Solution**: Overrode the CSS for the pagination controls to resize the SVG icons.
+
+## Conclusion
+
+This project provided a hands-on experience with building a CRUD application in Laravel. It involved setting up models, migrations, controllers, and views, as well as handling pagination and styling issues. The challenges encountered helped reinforce problem-solving skills and a deeper understanding of Git and Laravel.
+
+
