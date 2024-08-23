@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 
 class PostsTableSeeder extends Seeder
 {
@@ -13,9 +12,21 @@ class PostsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Post::factory()->count(50)->create();
-        
+        // Clear the posts collection before seeding
+        DB::collection('posts')->delete();
+
+        // Insert 50 posts into the posts collection
+        $posts = [];
+
+        for ($i = 1; $i <= 50; $i++) {
+            $posts[] = [
+                'title' => 'Post Title ' . $i,
+                'content' => 'This is the content for post ' . $i,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+        DB::collection('posts')->insert($posts);
     }
-
 }
-
