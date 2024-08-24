@@ -1,3 +1,4 @@
+Git Repository URL: https://github.com/kachary3/blog
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -68,66 +69,39 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 Git Repository URL: https://github.com/kachary3/blog
 
-## Description
+# Blog Application with User Authentication and Admin Panel
 
-This project is a simple blog application built with Laravel. It allows users to create, read, update, and delete (CRUD) blog posts.
+## Overview
+
+This project involves implementing user authentication and an admin panel for a blog application using Laravel. The primary objectives were to manage posts and users with different access levels, ensuring that regular users can only view and create posts, while admins have full control over both posts and user management.
 
 ## Approach
 
-### Step 1: Setting Up Laravel
+### 1. Authentication Setup
+- **Laravel UI:** Installed Laravel UI package to set up basic authentication and user registration.
+- **MongoDB Integration:** Configured MongoDB as the database for storing user and post data.
+- **Admin Middleware:** Implemented middleware to restrict access to admin routes based on user roles.
 
-- Installed Laravel using Composer.
-- Set up the environment configuration in the `.env` file.
+**Setting Up User Authentication:**
+   - Integrated Laravel UI with Bootstrap for user authentication.
+   - Used the command `php artisan ui bootstrap --auth` to scaffold authentication and compiled frontend assets using `npm install && npm run dev`.
 
-### Step 2: Creating the Blog Post Model and Migration
+. **Creating the Admin Panel:**
+   - Added admin-related routes in `web.php` for functionalities including dashboard, user management, and post management.
+   - Developed templates for the admin panel to manage blog posts and users.
+   - Implemented role-based access control to ensure that only users with admin roles can access specific features so that admin can delete user delete posts and edit.
 
-- Generated the `Post` model and migration using artisan commands.
-- Defined the schema for the `posts` table in the migration file.
-- Ran migrations to create the `posts` table.
+### 2. Routes and Controllers
+- **User Routes:** Secured routes to ensure that users can only view and create posts.
+- **Admin Routes:** Set up admin routes for managing posts and users, accessible only to users with admin privileges.
+- **Controllers:** Applied policies in controllers to enforce authorization checks for updating and deleting posts.
 
-### Step 3: Creating the Controller and Routes
+### 3. Challenges
+- **Implementation:** Ensuring correct policy application and handling permissions for both admins and regular users.
+- **Database Errors:** Encountered issues with duplicate keys in MongoDB during seeding, which were resolved by checking for existing entries before insertion.
+. **User Login and Post Management:**
+   - Encountered an issue where, after logging in as a user, it was found that the user could edit and delete posts, which should have been restricted. This required adjustments in role-based access control to ensure proper permissions and security.
 
-- Generated the `PostController` using artisan.
-- Defined resource routes for the `Post` resource in `routes/web.php`.
+## 4. Repository
 
-### Step 4: Building the Views
-
-- Created Blade templates for listing, creating, editing, and showing posts.
-- Used Bootstrap for basic styling.
-
-### Step 5: Implementing CRUD Functionality
-
-- Implemented the necessary methods in `PostController` for CRUD operations.
-- Added form validation in the controller methods.
-
-### Step 6: Pagination
-
-- Added pagination to the blog post listing using Laravel's built-in pagination.
-
-### Step 7: Styling and Debugging
-
-- Customized the styling of pagination controls.
-- Debugged issues with large pagination arrows by overriding CSS styles.
-
-### Step 8: Committing Changes
-
-- Regularly committed changes to the repository with descriptive commit messages.
-
-### Step 9: Final Steps
-
-- Completed the project by finalizing views and testing all functionalities.
-- Documented the project in this README.md file.
-
-## Challenges Faced
-
-### Challenge 1: Large Pagination Arrows
-
-- **Issue**: When implementing pagination for the blog posts, the arrows used in the pagination controls appeared significantly larger than intended. This affected the user interface, making the pagination controls look disproportionate and disrupting the overall aesthetics of the application.
-
-- **Solution**: Overrode the CSS for the pagination controls to resize the SVG icons.
-
-## Conclusion
-
-This project provided a hands-on experience with building a CRUD application in Laravel. It involved setting up models, migrations, controllers, and views, as well as handling pagination and styling issues. The challenges encountered helped reinforce problem-solving skills and a deeper understanding of Git and Laravel.
-
-
+The project repository can be found at: [GitHub Repository](https://github.com/kachary3/blog)
