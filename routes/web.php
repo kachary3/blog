@@ -50,3 +50,5 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
 // Authentication routes
 Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
