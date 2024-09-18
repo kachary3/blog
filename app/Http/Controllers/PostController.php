@@ -4,66 +4,87 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class PostController extends Controller
 {
-    public function index()
-{
-    $posts = Post::paginate(10); // Adjust the number of items per page as needed
-    return view('posts.index', compact('posts'));
-}
-
-
-    public function create()
+    /**
+     * Retrieve a list of all blog posts.
+     *
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
     {
-        return view('posts.create');
+        $posts = Post::paginate(10); // Adjust the number of items per page as needed
+        return response()->json($posts);
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created blog post in storage.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function store(Request $request): JsonResponse
     {
         $request->validate([
             'title' => 'required',
             'body' => 'required',
         ]);
 
-        Post::create($request->all());
+        $post = Post::create($request->all());
 
-        return redirect()->route('posts.index')
-                         ->with('success', 'Post created successfully.');
+        return response()->json([
+            'message' => 'Post created successfully.',
+            'post' => $post
+        ], 201);
     }
 
-    public function show(Post $post)
+    /**
+     * Display the specified blog post.
+     *
+     * @param Post $post
+     * @return JsonResponse
+     */
+    public function show(Post $post): JsonResponse
     {
-        return view('posts.show', compact('post'));
+        return response()->json($post);
     }
 
-    public function edit(Post $post)
+    /**
+     * Update the specified blog post in storage.
+     *
+     * @param Request $request
+     * @param Post $post
+     * @return JsonResponse
+     */
+    public function update(Request $request, Post $post): JsonResponse
     {
-        return view('posts.edit', compact('post'));
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $post->update($request->only(['title', 'body']));
+
+        return response()->json([
+            'message' => 'Post updated successfully.',
+            'post' => $post
+        ]);
     }
 
-    public function update(Request $request, Post $post)
-{
-    // Validate the request
-    $request->validate([
-        'title' => 'required',
-        'body' => 'required',
-    ]);
-
-    // Update the post with validated data
-    $post->update($request->only(['title', 'body']));
-
-    // Redirect back with a success message
-    return redirect()->route('posts.index')
-                     ->with('success', 'Post updated successfully.');
-}
-
-
-    public function destroy(Post $post)
+    /**
+     * Remove the specified blog post from storage.
+     *
+     * @param Post $post
+     * @return JsonResponse
+     */
+    public function destroy(Post $post): JsonResponse
     {
         $post->delete();
 
-        return redirect()->route('posts.index')
-                         ->with('success', 'Post deleted successfully.');
+        return response()->json([
+            'message' => 'Post deleted successfully.'
+        ]);
     }
 }
